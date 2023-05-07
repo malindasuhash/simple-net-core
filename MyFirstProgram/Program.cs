@@ -49,6 +49,42 @@ int converted = (int)t; // Explicit conversion because of the lossy behaviour
 
 n.Incoming incoming = new n.Incoming();
 
+int a = 1_000_000;
+int b = 1_000_000;
+
+int d = a * b; // Overflow, but it is silient because it is not checked.
+Console.WriteLine(d);
+
+//int c = checked(a * b); // Throws an exception because overflow is not silent 
+//Console.WriteLine(c);
+
+// Note, decimals automatically wraps around; no impact by applying checked statement
+
+int e = a * b; // No exception is thrown because the wrap around is automatic and silent.
+Console.WriteLine(e);
+
+// Project level setting to control arithmatic checking. Project -> "Your program" setting -> Build -> Advanced (check arithmatic overflow)
+// 
+
+// int h = int.MaxValue + 1; // This errors in compile time.
+int f = unchecked(int.MaxValue + 1); // No error
+
+short i = 1, j = 2;
+// short k = i + j; // Compile time error because i and j are implicitly converted to int as they lack their own arithmatic operators
+// Casting is required to assign the value back to k which is a short, 16-bit integral value. 
+
+Console.WriteLine(double.NegativeInfinity);
+
+Console.WriteLine(1.0 / 0.0); // Positive infinity (which is printed in console)
+Console.WriteLine(0.0 / 0.0); // Not a number (NaN - which is printed in console)
+
+// double type is base 2 and native to the processor whereas decimal is a base 10 non-native to the processor.
+// double AND floats are presented in base 2 and only numbers expressible in base 2 can be presented precisely. 
+
+// Use BitArray to store a collection of booleans because of the efficient use of space. 
+
+// Classic: For value types the equality (==) is based on the actual value whereas for reference types its the reference we compare (==) which always return false.
+// Enums are compared with its underlying integral value.
 
 int getData()
 {
@@ -98,3 +134,4 @@ class UnitConverter
         return y;
     }
 }
+
