@@ -86,6 +86,62 @@ Console.WriteLine(0.0 / 0.0); // Not a number (NaN - which is printed in console
 // Classic: For value types the equality (==) is based on the actual value whereas for reference types its the reference we compare (==) which always return false.
 // Enums are compared with its underlying integral value.
 
+// Concept of short-cutting for boolean evaluations (& - non-shortcutting and && - shortcutting)
+// & and | is perform bitwise operations when applied to numbers.
+
+char newLine = '\u00A9'; // Escape sequence, single quote
+Console.WriteLine(newLine);
+
+// String represent an immutable sequence of unicode characters.
+// Verbatim string representations
+string verbatim = @"verbatim\string\single\""quote""";
+Console.WriteLine(verbatim);
+
+string concat = "first" + 2; // Works because ToString is called on the value
+string concat2 = 2 + "third"; // Same as above, that means order does not matter
+
+string interString = "4";
+Console.WriteLine($"The interString here {interString}");
+Console.WriteLine($"255 in hex is {byte.MaxValue:X2}"); // Formatting is possible within interpolated strings
+// Inteoplated strings must complete in a single line unless verbitim strings are used.
+
+// string does not support > or < instead ComparedTo must be used
+
+// Arrays are contigious block of memory for faster access.
+// Once an array has been created it cannot be resized
+int[] someArray = new int[15];
+Console.WriteLine(someArray.Length); // Returns the length of the array.
+// System.Collection namespace offers higher level data structures
+int[] anotherArray = new int[] { 1, 2, 3 };
+// Initialising arrays sets element values to zero (default value)
+
+// Note that if the array element type is a value, then part
+// of the memory is allocated. Essentially values are stored
+// in the array memory locations itself.
+// When the array value type is a reference type, then each element
+// is assigned a null value.
+// Array itself is a reference type int[] a = null is legal.
+
+// Indicies - refers to an element in an array
+char[] malinda = new char[] { 'm', 'a', 'l', 'i', 'n', 'd', 'a' };
+Console.WriteLine(malinda[^1]); // Last element "a"
+Index lastTwo = ^2;
+Console.WriteLine(malinda[lastTwo]); // Note the new Index type.
+
+// Ranges - slices an array
+Console.WriteLine(malinda[..2]); // First two "m" and "a"
+Console.WriteLine(malinda[2..]); // Element 3 to the end
+
+Range firstTwo = ..2;
+Console.WriteLine(malinda[firstTwo]);
+Range lastTwoChars = ^2..;
+Console.WriteLine(malinda[lastTwoChars]);
+// Remember hat sign refers from the end of the array.
+
+// Multidimentional array - rectangular (n-dimentional) or jagged (array of arrays)
+int[,] matrix = new int[3,3]; // Matrix of 3x3 
+
+
 int getData()
 {
     return 10;
